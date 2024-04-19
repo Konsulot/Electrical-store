@@ -1,2 +1,2 @@
-# Electrical-store
-Microservice for an electrical store
+# Electronic-store
+Microservice for an electronic store
