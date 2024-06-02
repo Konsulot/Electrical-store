@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package cart;
+
+enum CartStatus {
+    ACTIVE = 0;
+    CHECKED_OUT = 1;
+}
+
+message CartItem {
+    int32 id = 1;
+    string title = 2;
+    int32 quantity = 3;
+}
+
+message AddItemRequest {
+    int32 cart_id = 1;
+    CartItem item = 2;
+}
+
+message RemoveItemRequest {
+    int32 cart_id = 1;
+    int32 item_id = 2;
+}
+
+message GetCartRequest {
+    int32 cart_id = 1;
+}
+
+message CartResponse {
+    int32 cart_id = 1;
+    repeated CartItem items = 2;
+    CartStatus status = 3;
+}
+
+service CartService {
+    rpc AddItem(AddItemRequest) returns (CartResponse);
+    rpc RemoveItem(RemoveItemRequest) returns (CartResponse);
+    rpc GetCart(GetCartRequest) returns (CartResponse);
+}

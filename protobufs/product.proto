@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+enum ProductCategory {
+    MOBILE = 0;
+    LAPTOP = 1;
+    CAMERA = 2;
+}
+
+message Product {
+    int32 id = 1;
+    string title = 2;
+    string description = 3;
+    float price = 4;
+    ProductCategory category = 5;
+}
+
+message ProductListRequest {
+    ProductCategory category = 1;
+}
+
+message ProductListResponse {
+    repeated Product products = 1;
+}
+
+service ProductService {
+    rpc GetProducts (ProductListRequest) returns (ProductListResponse);
+}

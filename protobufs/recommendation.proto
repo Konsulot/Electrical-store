@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "product.proto";
+
+message RecommendationRequest {
+    int32 user_id = 1;
+    ProductCategory category = 2;
+    int32 max_results = 3;
+}
+
+message RecommendationResponse {
+    repeated Product products = 1;
+}
+
+service RecommendationService {
+    rpc Recommend (RecommendationRequest) returns (RecommendationResponse);
+}

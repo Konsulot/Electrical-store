@@ -1,0 +1,57 @@
+<!-- cart.html -->
+<!doctype html>
+<html lang="ru">
+<head>
+    <title>Корзина</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: red;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Корзина</h1>
+    <ul>
+        {% for item in cart.items %}
+        <li>
+            {{ item.title }} - Количество: {{ item.quantity }}
+            <form method="post" action="/cart/remove" style="display: inline;">
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+                <button type="submit">Удалить</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/">На главную</a>
+</body>
+</html>
